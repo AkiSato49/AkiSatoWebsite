@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+@font-face {
+  font-family: '1797';
+  src: url('/fonts/1797-compressed.woff2') format('woff2'),
+       url('/fonts/1797-compressed.woff')  format('woff');
+  font-weight: normal;
+  font-style:  normal;
+  font-display: swap;
+}
+
+/* ─── Swiss / Concrete ─────────────────────────────── */
+
+:root {
+  --bg:       #2a2724;
+  --surface:  #1e1c1a;
+  --concrete: #3d3a36;
+  --border:   #4a4642;
+  --text:     #e8e4df;
+  --muted:    #9a948d;
+  --accent:   #c8b89a;
+  --red:      #c0392b;
+
+  --grid: 8px;
+  --font:         'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: '1797', 'Impact', 'Arial Narrow', sans-serif;
+
+  /* accent colours */
+  --red:    #c0392b;
+  --rust:   #b35c3a;
+  --clay:   #9b6b4a;
+  --sand:   #c8b89a;  /* = --accent */
+  --moss:   #6b7c5a;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 20px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+
+  /* concrete texture via CSS noise */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ─── Typography ─────────────────────────────────────── */
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 13rem);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6rem);
+  letter-spacing: 0em;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+h3 { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* display number — huge ghost behind sections */
+.display-num {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 22vw, 20rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ─── Master grid ────────────────────────────────────── */
+/*
+  4 columns:
+  [1] label / meta  — 160px
+  [2] primary       — 1fr
+  [3] primary       — 1fr
+  [4] aside         — 1fr
+*/
+
+.container {
+  display: grid;
+  grid-template-columns: 160px repeat(3, 1fr);
+  column-gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* full-width override for elements that need it */
+.col-full  { grid-column: 1 / -1; }
+.col-label { grid-column: 1; }
+.col-main  { grid-column: 2 / -1; }
+.col-2     { grid-column: 2; }
+.col-3     { grid-column: 3; }
+.col-4     { grid-column: 4; }
+.col-2-3   { grid-column: 2 / 4; }
+.col-2-4   { grid-column: 2 / 5; }
+.col-3-4   { grid-column: 3 / 5; }
+.col-1-3   { grid-column: 1 / 4; }
+.col-1-2   { grid-column: 1 / 3; }
+
+.row-divider {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: var(--border);
+}
+
+.grid-line {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── Utilities ──────────────────────────────────────── */
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  color: var(--muted);
+}
+
+/* small coloured accent marks */
+.accent-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.accent-red  { background: var(--red);  }
+.accent-rust { background: var(--rust); }
+.accent-moss { background: var(--moss); }
+.accent-sand { background: var(--sand); }
