@@ -43,7 +43,7 @@
     <div class="col-1-2 flex flex-col gap-4 pt-2">
       <span class="label">Engineering · Sydney, Australia</span>
     </div>
-    <div class="col-3-4 max-md:hidden">
+    <div class="col-4 max-md:hidden">
       <Statue
         def={heroStatue}
         bodyText={BODY}
