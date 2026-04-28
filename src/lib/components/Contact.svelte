@@ -28,9 +28,9 @@
     const sorted = [...touchStatue.frags].sort((a, b) => a.order - b.order)
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: touchContainer,
-        start: 'top 90%',
-        end: 'top 20%',
+        trigger: section,
+        start: 'top 40%',
+        end: 'top -30%',
         scrub: 0.8,
       },
     })

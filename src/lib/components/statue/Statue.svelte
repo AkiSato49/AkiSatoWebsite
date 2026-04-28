@@ -60,8 +60,8 @@
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: trigger || statueContainer,
-        start: 'top 95%',
-        end: 'top 30%',
+        start: 'top 65%',
+        end: 'top 5%',
         scrub: 0.8,
         onUpdate: () => updateCanvas(els),
       },
