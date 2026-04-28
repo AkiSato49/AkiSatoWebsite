@@ -67,11 +67,22 @@
       <div class="display-line">GET I<em class="ch">N</em></div>
     </div>
 
-    <!-- TOUCH — typographical statue -->
-    <div class="col-full touch-line">
-      <!-- fragments behind -->
+    <!-- TOUCH — typographical statue, fragments masked to letter shapes -->
+    <div class="col-full touch-line" aria-label="TOUCH">
+
+      <!-- SVG mask definition: white text = visible, black bg = invisible -->
+      <svg class="mask-def" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <mask id="touch-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="320">
+            <rect x="0" y="0" width="1200" height="320" fill="black"/>
+            <text class="mask-text" x="0" y="0.88em" fill="white">TOUCH</text>
+          </mask>
+        </defs>
+      </svg>
+
+      <!-- fragments clipped to TOUCH letter shapes -->
       <div bind:this={touchContainer} class="touch-container"
-        style="width:{touchStatue.w}px; height:{touchStatue.h}px;">
+        style="width:{touchStatue.w}px; height:{touchStatue.h}px; mask:url(#touch-mask); -webkit-mask:url(#touch-mask);">
         {#each touchStatue.frags as frag}
           <StatueFragment
             def={frag}
@@ -81,8 +92,7 @@
           />
         {/each}
       </div>
-      <!-- TOUCH text on top, outlined so concrete shows through -->
-      <div class="touch-text" aria-label="TOUCH">TOUCH</div>
+
     </div>
 
     <div class="row-divider col-full mt-4"></div>
@@ -150,21 +160,22 @@
     margin-top: 0.5rem;
   }
 
-  /* TOUCH text floating on top of fragments */
-  .touch-text {
+  /* SVG mask definition — hidden from layout */
+  .mask-def {
     position: absolute;
-    top: 0; left: 0;
-    font-family: var(--font-display);
-    font-size: clamp(4.5rem, 14vw, 16rem);
-    line-height: 0.88;
-    text-transform: uppercase;
-    font-weight: normal;
-    color: transparent;
-    -webkit-text-stroke: 1.5px var(--accent);
+    width: 0;
+    height: 0;
+    overflow: visible;
     pointer-events: none;
-    user-select: none;
-    white-space: nowrap;
-    z-index: 10;
+  }
+
+  /* mask text uses display font — CSS applies to SVG text */
+  .mask-text {
+    font-family: '1797', Impact, 'Arial Narrow', sans-serif;
+    font-size: clamp(4.5rem, 14vw, 16rem);
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
   }
 
   /* fragment container — clips to container width */
