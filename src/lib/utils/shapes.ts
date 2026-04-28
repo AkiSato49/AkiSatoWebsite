@@ -104,14 +104,15 @@ function gridCell(col: number, row: number): FragmentDef {
   }
 }
 // ─── Touch: wide slabs that fill the TOUCH display line ───────────────────
-const TTW = 1200, TTH = 180
+const TTW = 1200, TTH = 310
 export const touchStatue: StatueDef = {
   w: TTW, h: TTH, theme: 'contact',
   frags: [
-    { id:'t0', x:0, y:0,   w:TTW, h:42, clip:'polygon(0% 0%, 100% 3%, 97% 100%, 0% 97%)',  fromX:-520, fromY:0, fromR:-6,  order:0    },
-    { id:'t1', x:0, y:46,  w:TTW, h:42, clip:'polygon(2% 0%, 98% 2%, 100% 97%, 0% 100%)',  fromX: 520, fromY:0, fromR: 5,  order:0.25 },
-    { id:'t2', x:0, y:92,  w:TTW, h:42, clip:'polygon(0% 3%, 100% 0%, 98% 97%, 2% 100%)',  fromX:-520, fromY:0, fromR:-5,  order:0.5  },
-    { id:'t3', x:0, y:138, w:TTW, h:42, clip:'polygon(1% 0%, 99% 2%, 100% 100%, 0% 98%)',  fromX: 520, fromY:0, fromR: 6,  order:0.75 },
+    { id:'t0', x:0, y:0,   w:TTW, h:58, clip:'polygon(0% 0%, 100% 3%, 97% 100%, 0% 97%)',  fromX:-520, fromY:0, fromR:-6,  order:0    },
+    { id:'t1', x:0, y:62,  w:TTW, h:58, clip:'polygon(2% 0%, 98% 2%, 100% 97%, 0% 100%)',  fromX: 520, fromY:0, fromR: 5,  order:0.2  },
+    { id:'t2', x:0, y:124, w:TTW, h:58, clip:'polygon(0% 3%, 100% 0%, 98% 97%, 2% 100%)',  fromX:-520, fromY:0, fromR:-5,  order:0.4  },
+    { id:'t3', x:0, y:186, w:TTW, h:58, clip:'polygon(1% 0%, 99% 2%, 100% 100%, 0% 98%)',  fromX: 520, fromY:0, fromR: 6,  order:0.6  },
+    { id:'t4', x:0, y:252, w:TTW, h:58, clip:'polygon(0% 2%, 100% 0%, 99% 98%, 1% 100%)',  fromX:-520, fromY:0, fromR:-4,  order:0.8  },
   ]
 }
 

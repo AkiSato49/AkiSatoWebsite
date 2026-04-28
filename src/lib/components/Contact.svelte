@@ -4,22 +4,20 @@
   import StatueFragment from './statue/StatueFragment.svelte'
   import { touchStatue } from '$lib/utils/shapes'
 
-  let section       = $state<HTMLElement | null>(null)
-  let line1         = $state<HTMLElement | null>(null)
+  let section        = $state<HTMLElement | null>(null)
+  let line1          = $state<HTMLElement | null>(null)
   let touchContainer = $state<HTMLElement | null>(null)
 
   let cleanup: (() => void) | null = null
 
   onMount(async () => {
     if (!browser) return
-    const { gsap }         = await import('gsap')
+    const { gsap }          = await import('gsap')
     const { ScrollTrigger } = await import('gsap/ScrollTrigger')
     gsap.registerPlugin(ScrollTrigger)
 
-    // animate GET IN
     gsap.from(line1, { opacity: 0, y: 60, duration: 1, ease: 'power4.out', delay: 0.1 })
 
-    // animate TOUCH fragments
     if (!touchContainer) return
     const els = Array.from(touchContainer.querySelectorAll<HTMLElement>('.fragment'))
 
@@ -54,35 +52,37 @@
 </script>
 
 <section id="contact" bind:this={section}
-  class="relative border-b border-edge overflow-hidden ghost-contact min-h-screen flex flex-col">
+  class="ghost-contact relative border-b border-edge min-h-screen flex flex-col">
 
-  <div class="container pt-20">
-
-    <!-- label -->
+  <!-- top: label row -->
+  <div class="container pt-20 pb-0">
     <span class="label col-1-2">04 — Contact</span>
     <div class="row-divider"></div>
+  </div>
+
+  <!-- middle: typography, vertically centered -->
+  <div class="flex-1 flex flex-col justify-center px-8 md:px-[calc(2rem+160px+2rem)] overflow-visible py-12">
 
     <!-- GET IN -->
-    <div class="col-full overflow-hidden pt-4" bind:this={line1}>
+    <div class="overflow-hidden" bind:this={line1}>
       <div class="display-line">GET I<em class="ch">N</em></div>
     </div>
 
-    <!-- TOUCH — typographical statue, fragments masked to letter shapes -->
-    <div class="col-full touch-line" aria-label="TOUCH">
+    <!-- TOUCH — fragments masked to letter shapes -->
+    <div class="touch-line" aria-label="TOUCH">
 
-      <!-- SVG mask definition: white text = visible, black bg = invisible -->
       <svg class="mask-def" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
-          <mask id="touch-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="320">
-            <rect x="0" y="0" width="1200" height="320" fill="black"/>
+          <mask id="touch-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="400">
+            <rect x="0" y="0" width="1200" height="400" fill="black"/>
             <text class="mask-text" x="0" y="0.88em" fill="white">TOUCH</text>
           </mask>
         </defs>
       </svg>
 
-      <!-- fragments clipped to TOUCH letter shapes -->
       <div bind:this={touchContainer} class="touch-container"
-        style="width:{touchStatue.w}px; height:{touchStatue.h}px; mask:url(#touch-mask); -webkit-mask:url(#touch-mask);">
+        style="width:{touchStatue.w}px; height:{touchStatue.h}px;
+               mask:url(#touch-mask); -webkit-mask:url(#touch-mask);">
         {#each touchStatue.frags as frag}
           <StatueFragment
             def={frag}
@@ -95,12 +95,10 @@
 
     </div>
 
-    <div class="row-divider col-full mt-4"></div>
-
   </div>
 
-  <!-- contact info pinned to bottom -->
-  <div class="container mt-auto pb-16 pt-8">
+  <!-- bottom: contact info -->
+  <div class="container pb-16 pt-4">
     <div class="col-1-2 flex flex-col gap-1 max-md:col-full">
       <span class="label">Email</span>
       <a href="mailto:carlosakisato@gmail.com"
@@ -139,7 +137,6 @@
 
   .container { row-gap: 0; }
 
-  /* GET IN */
   .display-line {
     display: block;
     font-family: var(--font-display);
@@ -153,14 +150,12 @@
 
   .ch { font-style: normal; color: var(--rust); }
 
-  /* TOUCH statue */
+  /* TOUCH mask area */
   .touch-line {
     position: relative;
-    overflow: hidden;
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
   }
 
-  /* SVG mask definition — hidden from layout */
   .mask-def {
     position: absolute;
     width: 0;
@@ -169,19 +164,16 @@
     pointer-events: none;
   }
 
-  /* mask text uses display font — CSS applies to SVG text */
   .mask-text {
     font-family: '1797', Impact, 'Arial Narrow', sans-serif;
     font-size: clamp(4.5rem, 14vw, 16rem);
     font-weight: normal;
-    text-transform: uppercase;
     letter-spacing: -0.01em;
   }
 
-  /* fragment container — clips to container width */
   .touch-container {
     position: relative;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 </style>
