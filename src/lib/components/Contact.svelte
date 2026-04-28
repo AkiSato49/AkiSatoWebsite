@@ -52,70 +52,73 @@
 </script>
 
 <section id="contact" bind:this={section}
-  class="ghost-contact relative border-b border-edge min-h-screen flex flex-col">
+  class="ghost-contact relative border-b border-edge min-h-screen flex flex-col overflow-hidden">
 
-  <!-- top: label row -->
-  <div class="container pt-20 pb-0">
+  <!-- label row -->
+  <div class="container pt-20">
     <span class="label col-1-2">04 — Contact</span>
     <div class="row-divider"></div>
   </div>
 
-  <!-- middle: typography, vertically centered -->
-  <div class="flex-1 flex flex-col justify-center px-8 md:px-[calc(2rem+160px+2rem)] overflow-visible py-12">
+  <!-- centered block — everything together as one unit -->
+  <div class="flex-1 flex flex-col justify-center">
+    <div class="container py-12">
 
-    <!-- GET IN -->
-    <div class="overflow-hidden" bind:this={line1}>
-      <div class="display-line">GET I<em class="ch">N</em></div>
-    </div>
-
-    <!-- TOUCH — fragments masked to letter shapes -->
-    <div class="touch-line" aria-label="TOUCH">
-
-      <svg class="mask-def" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <mask id="touch-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="400">
-            <rect x="0" y="0" width="1200" height="400" fill="black"/>
-            <text class="mask-text" x="0" y="0.88em" fill="white">TOUCH</text>
-          </mask>
-        </defs>
-      </svg>
-
-      <div bind:this={touchContainer} class="touch-container"
-        style="width:{touchStatue.w}px; height:{touchStatue.h}px;
-               mask:url(#touch-mask); -webkit-mask:url(#touch-mask);">
-        {#each touchStatue.frags as frag}
-          <StatueFragment
-            def={frag}
-            theme={touchStatue.theme}
-            containerW={touchStatue.w}
-            containerH={touchStatue.h}
-          />
-        {/each}
+      <!-- GET IN -->
+      <div class="col-full overflow-hidden" bind:this={line1}>
+        <div class="display-line">GET I<em class="ch">N</em></div>
       </div>
 
-    </div>
+      <!-- TOUCH — clip-path restricts both visuals AND pointer events to letter shapes -->
+      <div class="col-full touch-line" aria-label="TOUCH">
 
-  </div>
+        <!-- SVG clip-path definition (not mask — clip-path also clips pointer events) -->
+        <svg class="clip-def" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <clipPath id="touch-clip" clipPathUnits="userSpaceOnUse">
+              <text class="clip-text" x="0" y="0.88em">TOUCH</text>
+            </clipPath>
+          </defs>
+        </svg>
 
-  <!-- bottom: contact info -->
-  <div class="container pb-16 pt-4">
-    <div class="col-1-2 flex flex-col gap-1 max-md:col-full">
-      <span class="label">Email</span>
-      <a href="mailto:carlosakisato@gmail.com"
-        class="text-ink hover:text-accent transition-colors duration-200">
-        carlosakisato@gmail.com
-      </a>
-    </div>
-    <div class="col-3 flex flex-col gap-1 max-md:col-full">
-      <span class="label">GitHub</span>
-      <a href="https://github.com/akisato49" target="_blank" rel="noreferrer"
-        class="text-ink hover:text-accent transition-colors duration-200">
-        github.com/akisato49
-      </a>
-    </div>
-    <div class="col-4 flex flex-col gap-1 max-md:col-full">
-      <span class="label">Location</span>
-      <span class="text-ink">Sydney, Australia · 33°S · 151°E</span>
+        <div bind:this={touchContainer} class="touch-container"
+          style="width:{touchStatue.w}px; height:{touchStatue.h}px;
+                 clip-path:url(#touch-clip); -webkit-clip-path:url(#touch-clip);">
+          {#each touchStatue.frags as frag}
+            <StatueFragment
+              def={frag}
+              theme={touchStatue.theme}
+              containerW={touchStatue.w}
+              containerH={touchStatue.h}
+            />
+          {/each}
+        </div>
+
+      </div>
+
+      <!-- divider -->
+      <div class="row-divider col-full" style="margin-top: 2rem"></div>
+
+      <!-- contact links — same grid, attached below typography -->
+      <div class="col-label flex flex-col gap-1 pt-6 max-md:col-full">
+        <span class="label">Email</span>
+        <a href="mailto:carlosakisato@gmail.com"
+          class="text-ink hover:text-accent transition-colors duration-200">
+          carlosakisato@gmail.com
+        </a>
+      </div>
+      <div class="col-2 flex flex-col gap-1 pt-6 max-md:col-full">
+        <span class="label">GitHub</span>
+        <a href="https://github.com/akisato49" target="_blank" rel="noreferrer"
+          class="text-ink hover:text-accent transition-colors duration-200">
+          github.com/akisato49
+        </a>
+      </div>
+      <div class="col-3-4 flex flex-col gap-1 pt-6 max-md:col-full">
+        <span class="label">Location</span>
+        <span class="text-ink">Sydney, Australia · 33°S · 151°E</span>
+      </div>
+
     </div>
   </div>
 
@@ -147,29 +150,23 @@
     color: var(--text);
     letter-spacing: -0.01em;
   }
-
   .ch { font-style: normal; color: var(--rust); }
 
-  /* TOUCH mask area */
-  .touch-line {
-    position: relative;
-    margin-top: 0.25rem;
-  }
-
-  .mask-def {
+  /* clip-path definition — zero-size, invisible */
+  .clip-def {
     position: absolute;
-    width: 0;
-    height: 0;
+    width: 0; height: 0;
     overflow: visible;
     pointer-events: none;
   }
-
-  .mask-text {
+  .clip-text {
     font-family: '1797', Impact, 'Arial Narrow', sans-serif;
     font-size: clamp(4.5rem, 14vw, 16rem);
     font-weight: normal;
     letter-spacing: -0.01em;
   }
+
+  .touch-line { position: relative; margin-top: 0.25rem; }
 
   .touch-container {
     position: relative;
