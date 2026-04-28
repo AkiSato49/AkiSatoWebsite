@@ -1,10 +1,33 @@
 <script lang="ts">
+  import { onMount, onDestroy } from 'svelte'
+  import { browser } from '$app/environment'
+
   const links = [
-    { href: '/#about',        label: 'About' },
-    { href: '/#projects',     label: 'Projects' },
-    { href: '/#inspirations', label: 'Inspirations' },
-    { href: '/contact',       label: 'Contact' },
+    { href: '/#about',        label: 'About',        id: 'about'        },
+    { href: '/#projects',     label: 'Projects',     id: 'projects'     },
+    { href: '/#inspirations', label: 'Inspirations', id: 'inspirations' },
   ]
+
+  let activeSection = $state('')
+
+  let obs: IntersectionObserver | null = null
+
+  onMount(() => {
+    if (!browser) return
+
+    obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) activeSection = e.target.id
+      })
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 })
+
+    links.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) obs!.observe(el)
+    })
+  })
+
+  onDestroy(() => obs?.disconnect())
 </script>
 
 <!-- mobile top bar -->
@@ -13,8 +36,10 @@
     Aki Sato
   </a>
   <div class="flex gap-6">
-    {#each links as { href, label }}
-      <a {href} class="text-[0.75rem] font-medium tracking-[0.15em] uppercase text-muted hover:text-ink transition-colors duration-200">
+    {#each links as { href, label, id }}
+      <a {href} class="text-[0.75rem] font-medium tracking-[0.15em] uppercase transition-colors duration-200"
+        class:text-ink={activeSection === id}
+        class:text-muted={activeSection !== id}>
         {label}
       </a>
     {/each}
@@ -29,16 +54,20 @@
   </a>
 
   <ul class="flex flex-col gap-4 list-none">
-    {#each links as { href, label }}
+    {#each links as { href, label, id }}
       <li>
-        <a {href} class="nav-link text-[0.75rem] font-medium tracking-[0.15em] uppercase text-muted transition-colors duration-200 hover:text-ink">
+        <a {href} class="nav-link text-[0.75rem] font-medium tracking-[0.15em] uppercase transition-colors duration-200"
+          class:text-ink={activeSection === id}
+          class:text-muted={activeSection !== id}>
           {label}
         </a>
       </li>
     {/each}
   </ul>
 
-  <span class="text-[0.65rem] text-edge leading-[1.6] vertical-label">33°S<br/>151°E</span>
+  <span class="text-[0.65rem] text-edge leading-[1.6] vertical-label">
+    Sydney<br/>33°S · 151°E
+  </span>
 
 </nav>
 

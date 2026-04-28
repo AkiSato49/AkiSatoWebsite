@@ -25,7 +25,7 @@
 
     <!-- row 1: meta -->
     <span class="label col-1-2">Portfolio — {new Date().getFullYear()}</span>
-    <span class="label col-3-4 justify-self-end text-muted max-md:hidden">33°S · 151°E</span>
+    <span class="label col-3-4 justify-self-end text-muted max-md:hidden">Sydney, Australia · 33°S · 151°E</span>
 
     <!-- row 2: divider -->
     <div class="row-divider"></div>
@@ -41,8 +41,7 @@
 
     <!-- row 5: cta | statue+text -->
     <div class="col-1-2 flex flex-col gap-4 pt-2">
-      <span class="label">Engineering · Sydney</span>
-      <a href="/#about" class="cta label">Scroll ↓</a>
+      <span class="label">Engineering · Sydney, Australia</span>
     </div>
     <div class="col-3-4 max-md:hidden">
       <Statue
