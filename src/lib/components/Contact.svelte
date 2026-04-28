@@ -99,21 +99,21 @@
       <div class="row-divider col-full" style="margin-top: 2rem"></div>
 
       <!-- contact links — same grid, attached below typography -->
-      <div class="col-label flex flex-col gap-1 pt-6 max-md:col-full">
+      <div class="col-1-2 flex flex-col gap-1 pt-6 max-md:col-full">
         <span class="label">Email</span>
         <a href="mailto:carlosakisato@gmail.com"
           class="text-ink hover:text-accent transition-colors duration-200">
           carlosakisato@gmail.com
         </a>
       </div>
-      <div class="col-2 flex flex-col gap-1 pt-6 max-md:col-full">
+      <div class="col-3 flex flex-col gap-1 pt-6 max-md:col-full">
         <span class="label">GitHub</span>
         <a href="https://github.com/akisato49" target="_blank" rel="noreferrer"
           class="text-ink hover:text-accent transition-colors duration-200">
           github.com/akisato49
         </a>
       </div>
-      <div class="col-3-4 flex flex-col gap-1 pt-6 max-md:col-full">
+      <div class="col-4 flex flex-col gap-1 pt-6 max-md:col-full">
         <span class="label">Location</span>
         <span class="text-ink">Sydney, Australia · 33°S · 151°E</span>
       </div>
