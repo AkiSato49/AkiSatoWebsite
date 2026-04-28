@@ -37,12 +37,11 @@
     grid = generateAsciiGrid(def.w, def.h, theme)
   })
 
-  async function sprayParticles() {
+  async function sprayParticles(cx: number, cy: number) {
     if (typeof window === 'undefined') return
     const { gsap } = await import('gsap')
     if (!el) return
 
-    const rect = el.getBoundingClientRect()
     const count = 4
 
     for (let i = 0; i < count; i++) {
@@ -50,8 +49,8 @@
       span.textContent = randomChar(theme)
       span.style.cssText = `
         position:fixed;
-        left:${rect.left + Math.random() * rect.width}px;
-        top:${rect.top + Math.random() * rect.height}px;
+        left:${cx + (Math.random() - 0.5) * 30}px;
+        top:${cy + (Math.random() - 0.5) * 30}px;
         font-family:monospace;
         font-size:${10 + Math.random() * 8}px;
         color:hsl(${hue}deg,8%,${50 + Math.random() * 30}%);
@@ -77,9 +76,9 @@
     }
   }
 
-  function onEnter() {
+  function onEnter(e: MouseEvent) {
     hovered = true
-    sprayParticles()
+    sprayParticles(e.clientX, e.clientY)
   }
   function onLeave() { hovered = false }
 
