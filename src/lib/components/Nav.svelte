@@ -3,13 +3,14 @@
     { href: '/#about',        label: 'About' },
     { href: '/#projects',     label: 'Projects' },
     { href: '/#inspirations', label: 'Inspirations' },
+    { href: '/contact',       label: 'Contact' },
   ]
 </script>
 
 <!-- mobile top bar -->
 <div class="flex md:hidden fixed top-0 inset-x-0 z-[100] items-center justify-between px-5 py-4 bg-base border-b border-edge">
   <a href="/" class="text-[0.75rem] font-bold tracking-[0.08em] uppercase text-ink">
-    Carlos Aki Sato
+    Aki Sato
   </a>
   <div class="flex gap-6">
     {#each links as { href, label }}
@@ -24,7 +25,7 @@
 <nav class="hidden md:flex fixed left-8 top-1/2 -translate-y-1/2 z-[100] flex-col items-start gap-10">
 
   <a href="/" class="font-sans text-[0.75rem] font-bold tracking-[0.08em] uppercase text-ink leading-[1.4]">
-    Carlos<br/>Aki Sato
+    Aki<br/>Sato
   </a>
 
   <ul class="flex flex-col gap-4 list-none">

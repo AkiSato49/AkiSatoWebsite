@@ -37,7 +37,7 @@
   })
 </script>
 
-<div class="ticker hidden md:flex" style="--speed:{speed}s; --gap:{gap}">
+<div class="ticker" style="--speed:{speed}s; --gap:{gap}">
   <div class="track" bind:this={trackEl} style={halfH ? `--half:${halfH}px` : ''}>
     {#each track as item}
       <span class="item label">{item}</span>
@@ -47,6 +47,7 @@
 
 <style>
   .ticker {
+    display: none;
     position: fixed;
     right: 0;
     top: 0;
@@ -81,6 +82,10 @@
   }
 
   .item:hover { color: var(--muted); }
+
+  @media (min-width: 768px) {
+    .ticker { display: flex; }
+  }
 
   @keyframes scroll {
     from { transform: translateY(0); }

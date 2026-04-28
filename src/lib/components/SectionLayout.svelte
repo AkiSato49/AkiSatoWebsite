@@ -39,7 +39,7 @@
     <div class="row-divider col-3-4"></div>
 
     <!-- col 1-2: sidebar -->
-    <div class="col-1-2 flex flex-col gap-6 self-start pt-[1.8rem] md:[grid-row:2] relative z-10">
+    <div class="col-1-2 flex flex-col gap-6 self-start pt-[1.8rem] md:[grid-row:2] relative z-10 sidebar">
       <p class="m-0">{desc}</p>
       <div class="max-md:hidden">
         <Statue
