@@ -54,15 +54,13 @@
 <section id="contact" bind:this={section}
   class="ghost-contact relative border-b border-edge min-h-screen flex flex-col overflow-hidden">
 
-  <!-- label row -->
-  <div class="container pt-20">
-    <span class="label col-1-2">04 — Contact</span>
-    <div class="row-divider col-3-4"></div>
-  </div>
-
-  <!-- centered block — everything together as one unit -->
+  <!-- everything in one container, label at top, content centered -->
   <div class="flex-1 flex flex-col justify-center">
-    <div class="container py-12">
+    <div class="container pt-20 pb-16">
+
+      <!-- label row -->
+      <span class="label col-1-2">04 — Contact</span>
+      <div class="row-divider col-3-4"></div>
 
       <!-- GET IN -->
       <div class="col-full overflow-hidden" bind:this={line1}>
