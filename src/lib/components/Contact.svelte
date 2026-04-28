@@ -29,8 +29,8 @@
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 40%',
-        end: 'top -30%',
+        start: 'top 80%',
+        end: 'top -10%',
         scrub: 0.8,
       },
     })
@@ -70,18 +70,19 @@
       <!-- TOUCH — clip-path restricts both visuals AND pointer events to letter shapes -->
       <div class="col-full touch-line" aria-label="TOUCH">
 
-        <!-- SVG clip-path definition (not mask — clip-path also clips pointer events) -->
+        <!-- SVG mask definition -->
         <svg class="clip-def" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
-            <clipPath id="touch-clip" clipPathUnits="userSpaceOnUse">
-              <text class="clip-text" x="0" y="0.88em">TOUCH</text>
-            </clipPath>
+            <mask id="touch-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="1200" height="400">
+              <rect x="0" y="0" width="1200" height="400" fill="black"/>
+              <text class="clip-text" x="0" y="0.88em" fill="white">TOUCH</text>
+            </mask>
           </defs>
         </svg>
 
         <div bind:this={touchContainer} class="touch-container"
           style="width:{touchStatue.w}px; height:{touchStatue.h}px;
-                 clip-path:url(#touch-clip); -webkit-clip-path:url(#touch-clip);">
+                 mask:url(#touch-mask); -webkit-mask:url(#touch-mask);">
           {#each touchStatue.frags as frag}
             <StatueFragment
               def={frag}
