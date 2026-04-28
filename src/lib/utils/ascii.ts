@@ -3,6 +3,7 @@ export const asciiSets = {
   about:        ['○', '◉', '·', '∘', '◌', '◎', '●', '◐'] as const,
   projects:     ['▪', '▫', '┼', '┤', '├', '─', '│', '╬'] as const,
   inspirations: ['✦', '+', '×', '◆', '·', '✚', '❖', '✕'] as const,
+  contact:      ['→', '←', '↗', '↙', '~', '≈', '·', '—'] as const,
 } as const
 
 export type AsciiTheme = keyof typeof asciiSets

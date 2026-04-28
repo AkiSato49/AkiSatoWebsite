@@ -103,6 +103,20 @@ function gridCell(col: number, row: number): FragmentDef {
     order: i / 9,
   }
 }
+// ─── Contact: horizontal slabs flying in from sides ──────────────────────
+const CTW = 240, CTH = 330
+export const contactStatue: StatueDef = {
+  w: CTW, h: CTH, theme: 'contact',
+  frags: [
+    { id:'ct0', x:0, y:0,   w:CTW, h:52, clip:'polygon(0% 0%, 100% 3%, 97% 100%, 0% 97%)',   fromX:-380, fromY:0, fromR:-8,  order:0    },
+    { id:'ct1', x:0, y:57,  w:CTW, h:52, clip:'polygon(2% 0%, 98% 2%, 100% 97%, 0% 100%)',   fromX: 380, fromY:0, fromR: 7,  order:0.15 },
+    { id:'ct2', x:0, y:114, w:CTW, h:52, clip:'polygon(0% 3%, 100% 0%, 98% 97%, 2% 100%)',   fromX:-380, fromY:0, fromR:-6,  order:0.3  },
+    { id:'ct3', x:0, y:171, w:CTW, h:52, clip:'polygon(1% 0%, 99% 2%, 100% 100%, 0% 98%)',   fromX: 380, fromY:0, fromR: 9,  order:0.45 },
+    { id:'ct4', x:0, y:228, w:CTW, h:52, clip:'polygon(0% 0%, 100% 2%, 98% 100%, 2% 97%)',   fromX:-380, fromY:0, fromR:-7,  order:0.6  },
+    { id:'ct5', x:0, y:278, w:CTW, h:52, clip:'polygon(3% 1%, 97% 0%, 100% 100%, 0% 96%)',   fromX: 380, fromY:0, fromR: 6,  order:0.75 },
+  ]
+}
+
 export const inspirationsStatue: StatueDef = {
   w: IW, h: IH, theme: 'inspirations',
   frags: [0,1,2].flatMap(row => [0,1,2].map(col => gridCell(col, row)))

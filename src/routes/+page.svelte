@@ -3,6 +3,7 @@
   import About        from '$lib/components/About.svelte';
   import Projects     from '$lib/components/Projects.svelte';
   import Inspirations from '$lib/components/Inspirations.svelte';
+  import Contact      from '$lib/components/Contact.svelte'
   import Footer       from '$lib/components/Footer.svelte';
   import PhotoStrip   from '$lib/components/PhotoStrip.svelte';
 
@@ -23,4 +24,5 @@
 <Projects />
 <PhotoStrip height={110} speed={34} count={14} />
 <Inspirations />
+<Contact />
 <Footer />

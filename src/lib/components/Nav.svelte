@@ -6,6 +6,7 @@
     { href: '/#about',        label: 'About',        id: 'about'        },
     { href: '/#projects',     label: 'Projects',     id: 'projects'     },
     { href: '/#inspirations', label: 'Inspirations', id: 'inspirations' },
+    { href: '/#contact',       label: 'Contact',      id: 'contact'      },
   ]
 
   let activeSection = $state('')
