@@ -55,7 +55,7 @@
   class="ghost-contact relative border-b border-edge min-h-screen flex flex-col overflow-hidden">
 
   <!-- label row -->
-  <div class="container pt-20">
+  <div class="container pt-20 pb-16">
     <span class="label col-1-2">04 — Contact</span>
     <div class="row-divider"></div>
   </div>
