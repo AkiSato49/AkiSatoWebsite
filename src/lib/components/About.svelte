@@ -120,7 +120,7 @@
     </div>
 
     <!-- right col: about text + ascii -->
-    <div class="col-3-4 flex flex-col gap-8 self-start border-l border-edge pl-8">
+    <div class="col-3-4 flex flex-col gap-8 self-start md:border-l border-edge md:pl-8">
       <p class="m-0">
         {#each (() => {
           const used = new Set<string>()

@@ -39,22 +39,24 @@
     <div class="row-divider col-3-4"></div>
 
     <!-- col 1-2: sidebar -->
-    <div class="col-1-2 flex flex-col gap-6 self-start pt-[1.8rem] [grid-row:2] relative z-10">
+    <div class="col-1-2 flex flex-col gap-6 self-start pt-[1.8rem] md:[grid-row:2] relative z-10">
       <p class="m-0">{desc}</p>
-      <Statue
-        def={statueDef}
-        bodyText=""
-        textFont="1px sans-serif"
-        textLineH={1}
-        textColor="transparent"
-        textWidth={1}
-        textHeight={statueDef.h}
-        trigger={section ?? undefined}
-      />
+      <div class="max-md:hidden">
+        <Statue
+          def={statueDef}
+          bodyText=""
+          textFont="1px sans-serif"
+          textLineH={1}
+          textColor="transparent"
+          textWidth={1}
+          textHeight={statueDef.h}
+          trigger={section ?? undefined}
+        />
+      </div>
     </div>
 
     <!-- cols 2-4: subgrid list -->
-    <div class="col-main section-list border-t border-edge [grid-row:2]">
+    <div class="col-main section-list border-t border-edge md:[grid-row:2]">
       {@render children()}
     </div>
 
@@ -83,4 +85,10 @@
   }
 
   .container { row-gap: 0; }
+
+  @media (max-width: 767px) {
+    .section-list {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

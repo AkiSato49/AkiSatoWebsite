@@ -20,12 +20,12 @@
   })
 </script>
 
-<section bind:this={section} id="hero" class="relative border-b border-edge py-20">
+<section bind:this={section} id="hero" class="relative border-b border-edge py-20 pt-32 md:pt-20">
   <div class="container">
 
     <!-- row 1: meta -->
     <span class="label col-1-2">Portfolio — {new Date().getFullYear()}</span>
-    <span class="label col-3-4 justify-self-end text-muted">33°S · 151°E</span>
+    <span class="label col-3-4 justify-self-end text-muted max-md:hidden">33°S · 151°E</span>
 
     <!-- row 2: divider -->
     <div class="row-divider"></div>
@@ -44,7 +44,7 @@
       <span class="label">Engineering · Sydney</span>
       <a href="/#about" class="cta label">Scroll ↓</a>
     </div>
-    <div class="col-3-4">
+    <div class="col-3-4 max-md:hidden">
       <Statue
         def={heroStatue}
         bodyText={BODY}
@@ -63,7 +63,6 @@
 <style>
   .container { row-gap: 0; }
 
-  /* display name */
   .name-line {
     display: block;
     font-family: var(--font-display);
@@ -81,7 +80,6 @@
   .ch         { font-style: normal; color: var(--rust); -webkit-text-stroke: 0; }
   .ch-outline { font-style: normal; -webkit-text-stroke: 1.5px var(--red); }
 
-  /* cta button */
   .cta {
     display: inline-block;
     border: 1px solid var(--border);

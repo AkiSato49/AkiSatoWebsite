@@ -37,7 +37,7 @@
   })
 </script>
 
-<div class="ticker" style="--speed:{speed}s; --gap:{gap}">
+<div class="ticker hidden md:flex" style="--speed:{speed}s; --gap:{gap}">
   <div class="track" bind:this={trackEl} style={halfH ? `--half:${halfH}px` : ''}>
     {#each track as item}
       <span class="item label">{item}</span>

@@ -9,19 +9,22 @@
 <SectionLayout id="projects" num="02" name="Projects" desc={DESC} statueDef={projectsStatue} ghostSide="right">
 
   {#each projects as project, i}
-    <article class="grid border-b border-edge"
-      style="grid-template-columns: subgrid; grid-column: 1/-1;">
+    <article class="project-row border-b border-edge" style="grid-column: 1/-1;">
 
-      <span class="row-num label text-right pr-6 text-[0.75rem] pt-[calc(1.8rem+0.2rem)]">
+      <!-- number: desktop only -->
+      <span class="row-num label text-right pr-6 text-[0.75rem] pt-[calc(1.8rem+0.2rem)] max-md:hidden">
         {String(i + 1).padStart(2, '0')}
       </span>
 
-      <div class="grid transition-colors duration-200 hover:bg-[rgba(200,184,154,0.03)]"
-        style="grid-column: span 2; grid-template-columns: subgrid;">
+      <!-- content cols -->
+      <div class="content-wrap" style="grid-column: span 2; grid-template-columns: subgrid;">
 
-        <div class="flex flex-col gap-2 border-l border-edge pl-8 py-[1.8rem]">
-          <!-- eslint-disable-next-line svelte/no-at-html-tags -->
-          <h3 class="proj-title">{@html project.titleHtml}</h3>
+        <div class="flex flex-col gap-2 border-l border-edge pl-6 py-[1.8rem] transition-colors duration-200 hover:bg-[rgba(200,184,154,0.03)] max-md:border-l-0 max-md:pl-0">
+          <div class="flex items-baseline gap-3">
+            <span class="row-num label md:hidden">{String(i + 1).padStart(2, '0')}</span>
+            <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+            <h3 class="proj-title">{@html project.titleHtml}</h3>
+          </div>
           <div class="flex flex-wrap gap-[0.3rem]">
             {#each project.tags as tag}
               <span class="tag">{tag}</span>
@@ -30,7 +33,7 @@
           <span class="label">{project.year}</span>
         </div>
 
-        <div class="border-l border-edge pl-8 py-[1.8rem]">
+        <div class="border-l border-edge pl-6 py-[1.8rem] transition-colors duration-200 hover:bg-[rgba(200,184,154,0.03)] max-md:border-l-0 max-md:pl-0 max-md:pt-0">
           <p class="m-0">{project.description}</p>
         </div>
 
@@ -42,5 +45,24 @@
 </SectionLayout>
 
 <style>
+  .project-row {
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: start;
+  }
+
+  .content-wrap {
+    display: grid;
+  }
+
   .proj-title :global(.hi) { color: var(--rust); }
+
+  @media (max-width: 767px) {
+    .project-row {
+      display: block;
+    }
+    .content-wrap {
+      display: block;
+    }
+  }
 </style>
