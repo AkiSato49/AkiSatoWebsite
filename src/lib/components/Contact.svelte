@@ -69,9 +69,7 @@
 
     <!-- TOUCH — typographical statue -->
     <div class="col-full touch-line">
-      <!-- ghost text behind fragments -->
-      <div class="touch-ghost" aria-hidden="true">TOUCH</div>
-      <!-- fragments -->
+      <!-- fragments behind -->
       <div bind:this={touchContainer} class="touch-container"
         style="width:{touchStatue.w}px; height:{touchStatue.h}px;">
         {#each touchStatue.frags as frag}
@@ -83,6 +81,8 @@
           />
         {/each}
       </div>
+      <!-- TOUCH text on top, outlined so concrete shows through -->
+      <div class="touch-text" aria-label="TOUCH">TOUCH</div>
     </div>
 
     <div class="row-divider col-full mt-4"></div>
@@ -150,21 +150,21 @@
     margin-top: 0.5rem;
   }
 
-  /* ghost text behind fragments */
-  .touch-ghost {
+  /* TOUCH text floating on top of fragments */
+  .touch-text {
+    position: absolute;
+    top: 0; left: 0;
     font-family: var(--font-display);
     font-size: clamp(4.5rem, 14vw, 16rem);
     line-height: 0.88;
     text-transform: uppercase;
     font-weight: normal;
     color: transparent;
-    -webkit-text-stroke: 1px var(--border);
-    opacity: 0.18;
+    -webkit-text-stroke: 1.5px var(--accent);
     pointer-events: none;
     user-select: none;
-    position: absolute;
-    left: 0; top: 0;
     white-space: nowrap;
+    z-index: 10;
   }
 
   /* fragment container — clips to container width */
