@@ -67,8 +67,11 @@
         <div class="display-line">GET I<em class="ch">N</em></div>
       </div>
 
-      <!-- TOUCH — clip-path restricts both visuals AND pointer events to letter shapes -->
-      <div class="col-full touch-line" aria-label="TOUCH">
+      <!-- TOUCH mobile: plain outlined text -->
+      <div class="col-full display-line line-touch md:hidden">TOUCH</div>
+
+      <!-- TOUCH desktop: fragments masked to letter shapes -->
+      <div class="col-full touch-line max-md:hidden" aria-label="TOUCH">
 
         <!-- SVG mask definition -->
         <svg class="clip-def" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -150,6 +153,7 @@
     letter-spacing: -0.01em;
   }
   .ch { font-style: normal; color: var(--rust); }
+  .line-touch { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
 
   /* clip-path definition — zero-size, invisible */
   .clip-def {
