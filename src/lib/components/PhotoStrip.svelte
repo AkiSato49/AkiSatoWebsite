@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import { SHAPES } from '$lib/utils/svgShapes'
 
   interface Props {
@@ -9,6 +10,17 @@
   }
 
   let { height = 130, speed = 40, count = 14, gap = 8 }: Props = $props()
+
+  let trackEl = $state<HTMLElement | null>(null)
+  let halfW   = $state(0)
+
+  onMount(() => {
+    const measure = () => { if (trackEl) halfW = trackEl.scrollWidth / 2 }
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(trackEl!)
+    return () => ro.disconnect()
+  })
 
   // concrete tone variants — matches statue fragment palette
   const TONES = [
@@ -56,7 +68,7 @@
 </svg>
 
 <div class="strip" style="--h:{height}px; --speed:{speed}s; --gap:{gap}px">
-  <div class="track">
+  <div class="track" bind:this={trackEl} style={halfW ? `--half:${halfW}px` : ''}>
     {#each strip as item}
       <div class="shard" style="width:{height}px">
         <svg
@@ -121,6 +133,6 @@
 
   @keyframes scroll {
     from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    to   { transform: translateX(calc(-1 * var(--half, 50%))); }
   }
 </style>

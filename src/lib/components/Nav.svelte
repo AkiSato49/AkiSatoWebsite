@@ -6,66 +6,35 @@
   ]
 </script>
 
-<nav>
-  <a href="/" class="logo">Carlos<br/>Aki Sato</a>
+<nav class="fixed left-8 top-1/2 -translate-y-1/2 z-[100] flex flex-col items-start gap-10">
 
-  <ul>
+  <a href="/" class="font-sans text-[0.75rem] font-bold tracking-[0.08em] uppercase text-ink leading-[1.4]">
+    Carlos<br/>Aki Sato
+  </a>
+
+  <ul class="flex flex-col gap-4 list-none">
     {#each links as { href, label }}
-      <li><a {href}>{label}</a></li>
+      <li>
+        <a {href} class="nav-link text-[0.75rem] font-medium tracking-[0.15em] uppercase text-muted transition-colors duration-200 hover:text-ink">
+          {label}
+        </a>
+      </li>
     {/each}
   </ul>
 
-  <span class="coords label">33°S<br/>151°E</span>
+  <span class="text-[0.65rem] text-edge leading-[1.6] vertical-label">33°S<br/>151°E</span>
+
 </nav>
 
 <style>
-  nav {
-    position: fixed;
-    left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2.5rem;
-    writing-mode: initial;
-  }
-
-  .logo {
-    font-family: var(--font);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  ul {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    gap: 1rem;
-  }
-
-  ul a {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    transition: color 0.2s;
+  /* writing-mode not in Tailwind */
+  .nav-link {
     writing-mode: vertical-rl;
     text-orientation: mixed;
     transform: rotate(180deg);
   }
-  ul a:hover { color: var(--text); }
 
-  .coords {
-    font-size: 0.6rem;
-    color: var(--border);
-    line-height: 1.6;
+  .vertical-label {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
   }

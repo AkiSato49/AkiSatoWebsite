@@ -1,14 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { browser } from '$app/environment'
-  import type { Component } from 'svelte'
-
-  import DesignerCard  from './cards/DesignerCard.svelte'
-  import DeveloperCard from './cards/DeveloperCard.svelte'
-  import SwissCard     from './cards/SwissCard.svelte'
-  import BarraganCard  from './cards/BarraganCard.svelte'
-  import StudyingCard  from './cards/StudyingCard.svelte'
-
   let {
     text       = '',
     font       = '17px Inter, sans-serif',
@@ -26,13 +18,7 @@
   } = $props()
 
   // hotword → card component + approximate card dimensions
-  const HOTWORDS: Record<string, { Card: Component; w: number; h: number }> = {
-    'designer':  { Card: DesignerCard,  w: 232, h: 188 },
-    'developer': { Card: DeveloperCard, w: 220, h: 190 },
-    'swiss':     { Card: SwissCard,     w: 196, h: 218 },
-    'barragán':  { Card: BarraganCard,  w: 200, h: 210 },
-    'studying':  { Card: StudyingCard,  w: 240, h: 185 },
-  }
+  const HOTWORDS: Record<string, { Card: Component; w: number; h: number }> = {}
 
   let canvas      = $state<HTMLCanvasElement|null>(null)
   let pretext:    any = null

@@ -4,7 +4,7 @@
   import Statue from './statue/Statue.svelte'
   import { heroStatue } from '$lib/utils/shapes'
 
-  const BODY = `I build things because wandering across problems is how I think. Software engineer studying at USYD. Mexican and Japanese — two ways of seeing the world that don't cancel each other out. I care about what people feel when they use something I made. That's what drives the craft.`
+  const BODY = `I am a software engineer. I learn by wonder. A book, a cultural convention, a problem I was not looking for. That curiosity goes into everything I build. I am Mexican and Japanese, and both show up in my work. What sets me apart is care. I do not put my name on things I would not stand behind.`
 
   let section = $state<HTMLElement | null>(null)
   let line1   = $state<HTMLElement | null>(null)
@@ -20,27 +20,27 @@
   })
 </script>
 
-<section bind:this={section} id="hero">
+<section bind:this={section} id="hero" class="relative border-b border-edge py-20">
   <div class="container">
 
     <!-- row 1: meta -->
     <span class="label col-1-2">Portfolio — {new Date().getFullYear()}</span>
-    <span class="label col-3-4 meta-r">33°S · 151°E</span>
+    <span class="label col-3-4 justify-self-end text-muted">33°S · 151°E</span>
 
     <!-- row 2: divider -->
     <div class="row-divider"></div>
 
-    <!-- row 3: display name — full width -->
-    <div class="col-full name-wrap" style="overflow:hidden">
-      <div bind:this={line1} class="name-line line-aki">A<em class="ch">K</em>I</div>
-      <div bind:this={line2} class="name-line line-sato">SA<em class="ch-outline">T</em>O</div>
+    <!-- row 3: display name -->
+    <div class="col-full name-wrap py-2 overflow-hidden">
+      <div bind:this={line1} class="name-line text-left">A<em class="ch">K</em>I</div>
+      <div bind:this={line2} class="name-line text-right line-sato">SA<em class="ch-outline">T</em>O</div>
     </div>
 
     <!-- row 4: divider -->
     <div class="row-divider"></div>
 
     <!-- row 5: cta | statue+text -->
-    <div class="col-1-2 cta-col">
+    <div class="col-1-2 flex flex-col gap-4 pt-2">
       <span class="label">Engineering · Sydney</span>
       <a href="/#about" class="cta label">Scroll ↓</a>
     </div>
@@ -61,22 +61,9 @@
 </section>
 
 <style>
-  section {
-    position: relative;
-    border-bottom: 1px solid var(--border);
-    padding: 5rem 0 4rem;
-  }
-
   .container { row-gap: 0; }
 
-  /* row 1 */
-  .meta-r { justify-self: end; color: var(--muted); }
-
-  /* divider spacing */
-  .row-divider { margin: 1.5rem 0; }
-
-  /* name */
-  .name-wrap { padding: 0.5rem 0; }
+  /* display name */
   .name-line {
     display: block;
     font-family: var(--font-display);
@@ -86,19 +73,15 @@
     font-weight: normal;
     color: var(--text);
   }
-  .line-aki  { text-align: left; }
-  .line-sato { text-align: right; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
-
-  .ch         { font-style:normal; color: var(--rust); -webkit-text-stroke:0; }
-  .ch-outline { font-style:normal; -webkit-text-stroke: 1.5px var(--red); }
-
-  /* row 5 */
-  .cta-col {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding-top: 0.5rem;
+  .line-sato {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
   }
+
+  .ch         { font-style: normal; color: var(--rust); -webkit-text-stroke: 0; }
+  .ch-outline { font-style: normal; -webkit-text-stroke: 1.5px var(--red); }
+
+  /* cta button */
   .cta {
     display: inline-block;
     border: 1px solid var(--border);
